@@ -1,38 +1,46 @@
 package groupId;
 
-import groupId.jpa.AttivitaJpa;
+import groupId.jpa.AttivitaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 public class AttivitaController {
 
     @Autowired
-    private AttivitaJpa attivitaJpa;
+    private AttivitaService attivitaService;
 
-    @GetMapping("/attivita")
-    public String getAttivita(@RequestParam String nome) {
-        List<Attivita> list =  attivitaJpa.findByNome(nome);
-        return String.valueOf(list.size()) + " attività trovate";
+    @PostMapping("/addAttivita")
+    public void addAttivita(@RequestBody AttivitaDto payload) {
+        Attivita attivita = AttivitaMapper.INSTANCE.map(payload);
+        attivitaService.addAttivita(attivita);
     }
 
-    @PutMapping("/attivita")
-    public void saveAttivita(@RequestParam String nome) {
-        Attivita attivita = new Attivita();
-        attivita.setNome(nome);
-        attivita.setLuogo("FIRENZE");
-        attivita.setDataInizio(LocalDate.now());
-        attivita.setDataFine(LocalDate.now());
-        attivita.setNumeroPostiDisponibili(20);
-        attivita.setNumeroPostiOccupati(0);
-        attivitaJpa.save(attivita);
+    @PutMapping("/updateAttivita")
+    public void updateAttivita(@RequestBody AttivitaDto payload) {
+        Attivita attivita = AttivitaMapper.INSTANCE.map(payload);
+        attivitaService.updateAttivita(attivita);
     }
 
+    @DeleteMapping("/deleteAttivita")
+    public void deleteAttivita(@RequestParam Integer id) {
+        attivitaService.deleteAttivita(id);
+    }
+
+    @GetMapping("/getAttivitaById")
+    public AttivitaDto getAttivitaById(@RequestParam Integer id) {
+        Optional<Attivita> attivita = attivitaService.getAttivitaById(id);
+        return AttivitaMapper.INSTANCE.mapReverse(attivita.isPresent() ? attivita.get() : null);
+    }
+
+    @GetMapping("/getAttivita")
+    public List<AttivitaDto> getAttivita() {
+        List<Attivita> list = attivitaService.getAttivita();
+        List<AttivitaDto> result = list.stream().map(AttivitaMapper.INSTANCE::mapReverse).collect(Collectors.toList());
+        return result;
+    }
 }
