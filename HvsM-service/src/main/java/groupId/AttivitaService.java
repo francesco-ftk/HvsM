@@ -38,7 +38,7 @@ public class AttivitaService {
     public List<Attivita> getAttivitaByFilter(FiltroAttivita filtroAttivita) {
         List<Attivita> attivita = attivitaJpa.findByNomeAndGiorno(filtroAttivita.getNome(), filtroAttivita.getGiorno());
         if(filtroAttivita.isDisponibilita()){
-            return attivita.stream().filter(a -> a.getNumeroPostiDisponibili() < a.getNumeroPostiOccupati()).collect(Collectors.toList());
+            return attivita.stream().filter(a -> a.getNumeroPostiDisponibili() > a.getNumeroPostiOccupati()).collect(Collectors.toList());
         }
         return attivita;
     }

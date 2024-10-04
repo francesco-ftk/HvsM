@@ -1,9 +1,12 @@
 package groupId;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDate;
 
 public class FiltroAttivitaDto {
     private String nome;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate giorno;
     private boolean disponibilita;
 
