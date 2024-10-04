@@ -26,19 +26,16 @@
             <groupId>groupId</groupId>
             <artifactId>HvsM-service</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>groupId</groupId>
             <artifactId>HvsM-dto</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>groupId</groupId>
             <artifactId>HvsM-mapper</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 

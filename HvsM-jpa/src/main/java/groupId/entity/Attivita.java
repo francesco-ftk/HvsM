@@ -1,4 +1,4 @@
-package groupId;
+package groupId.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
@@ -18,11 +18,8 @@ public class Attivita {
     @Column(name = "LUOGO", nullable = false)
     private String luogo;
 
-    @Column(name = "DATA_INIZIO", nullable = false)
-    private LocalDate dataInizio;
-
-    @Column(name = "DATA_FINE", nullable = false)
-    private LocalDate dataFine;
+    @Column(name = "GIORNO", nullable = false)
+    private LocalDate giorno;
 
     @Column(name = "NUM_POSTI_DISP", nullable = false)
     private Integer numeroPostiDisponibili;
@@ -54,20 +51,12 @@ public class Attivita {
         this.luogo = luogo;
     }
 
-    public LocalDate getDataInizio() {
-        return dataInizio;
+    public LocalDate getGiorno() {
+        return giorno;
     }
 
-    public void setDataInizio(LocalDate dataInizio) {
-        this.dataInizio = dataInizio;
-    }
-
-    public LocalDate getDataFine() {
-        return dataFine;
-    }
-
-    public void setDataFine(LocalDate dataFine) {
-        this.dataFine = dataFine;
+    public void setGiorno(LocalDate giorno) {
+        this.giorno = giorno;
     }
 
     public Integer getNumeroPostiDisponibili() {

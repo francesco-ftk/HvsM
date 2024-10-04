@@ -1,6 +1,7 @@
 package groupId;
 
-import groupId.jpa.AttivitaService;
+import groupId.entity.Attivita;
+import groupId.entitymapper.AttivitaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,14 +17,12 @@ public class AttivitaController {
 
     @PostMapping("/addAttivita")
     public void addAttivita(@RequestBody AttivitaDto payload) {
-        Attivita attivita = AttivitaMapper.INSTANCE.map(payload);
-        attivitaService.addAttivita(attivita);
+        attivitaService.addAttivita(AttivitaMapper.INSTANCE.map(payload));
     }
 
     @PutMapping("/updateAttivita")
     public void updateAttivita(@RequestBody AttivitaDto payload) {
-        Attivita attivita = AttivitaMapper.INSTANCE.map(payload);
-        attivitaService.updateAttivita(attivita);
+        attivitaService.updateAttivita(AttivitaMapper.INSTANCE.map(payload));
     }
 
     @DeleteMapping("/deleteAttivita")
@@ -40,7 +39,12 @@ public class AttivitaController {
     @GetMapping("/getAttivita")
     public List<AttivitaDto> getAttivita() {
         List<Attivita> list = attivitaService.getAttivita();
-        List<AttivitaDto> result = list.stream().map(AttivitaMapper.INSTANCE::mapReverse).collect(Collectors.toList());
-        return result;
+        return list.stream().map(AttivitaMapper.INSTANCE::mapReverse).collect(Collectors.toList());
+    }
+
+    @GetMapping("/filtraAttivita")
+    public List<AttivitaDto> getAttivitaByFilter(@RequestBody FiltroAttivitaDto filtroAttivita) {
+        List<Attivita> list = attivitaService.getAttivitaByFilter(FiltroAttivitaMapper.INSTANCE.map(filtroAttivita));
+        return list.stream().map(AttivitaMapper.INSTANCE::mapReverse).collect(Collectors.toList());
     }
 }

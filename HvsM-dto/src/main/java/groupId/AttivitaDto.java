@@ -1,7 +1,6 @@
 package groupId;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.Column;
 
 import java.time.LocalDate;
 
@@ -11,9 +10,7 @@ public class AttivitaDto {
     private String nome;
     private String luogo;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate dataInizio;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate dataFine;
+    private LocalDate giorno;
     private Integer numeroPostiDisponibili;
     private Integer numeroPostiOccupati;
 
@@ -41,20 +38,12 @@ public class AttivitaDto {
         this.luogo = luogo;
     }
 
-    public LocalDate getDataInizio() {
-        return dataInizio;
+    public LocalDate getGiorno() {
+        return giorno;
     }
 
-    public void setDataInizio(LocalDate dataInizio) {
-        this.dataInizio = dataInizio;
-    }
-
-    public LocalDate getDataFine() {
-        return dataFine;
-    }
-
-    public void setDataFine(LocalDate dataFine) {
-        this.dataFine = dataFine;
+    public void setGiorno(LocalDate giorno) {
+        this.giorno = giorno;
     }
 
     public Integer getNumeroPostiDisponibili() {

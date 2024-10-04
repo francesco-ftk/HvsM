@@ -1,5 +1,7 @@
-package groupId;
+package groupId.entitymapper;
 
+import groupId.AttivitaDto;
+import groupId.entity.Attivita;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
