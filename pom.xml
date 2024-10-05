@@ -4,18 +4,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>groupId</groupId>
+    <groupId>com.example</groupId>
     <artifactId>HvsM</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
         <module>HvsM-boot</module>
-        <module>HvsM-model</module>
-        <module>HvsM-controller</module>
-        <module>HvsM-service</module>
-        <module>HvsM-jpa</module>
         <module>HvsM-dto</module>
+        <module>HvsM-model</module>
         <module>HvsM-mapper</module>
+        <module>HvsM-jpa</module>
+        <module>HvsM-service</module>
+        <module>HvsM-controller</module>
     </modules>
 
     <properties>
@@ -84,7 +84,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>HvsM-boot/src/main/java/com/hvsm/Application.java</mainClass>
+                    <mainClass>HvsM-boot/src/main/java/com/example/boot/Application.java</mainClass>
                 </configuration>
             </plugin>
             <plugin>
