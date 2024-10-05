@@ -1,4 +1,4 @@
-package com.example.dto;
+package com.example.controller.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;

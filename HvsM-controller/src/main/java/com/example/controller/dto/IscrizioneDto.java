@@ -1,4 +1,4 @@
-package com.example.dto;
+package com.example.controller.dto;
 
 public class IscrizioneDto {
     private String bearerToken;

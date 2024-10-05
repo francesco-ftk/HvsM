@@ -1,9 +1,9 @@
 package com.example.service;
 
-import com.example.entity.Attivita;
-import com.example.entity.Utente;
-import com.example.jpa.AttivitaJpa;
-import com.example.jpa.UtenteJpa;
+import com.example.service.entity.Attivita;
+import com.example.service.entity.Utente;
+import com.example.service.jpa.AttivitaJpa;
+import com.example.service.jpa.UtenteJpa;
 import com.example.service.security.BearerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

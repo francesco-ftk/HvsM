@@ -1,7 +1,7 @@
-package com.example.entitymapper;
+package com.example.controller.mapper;
 
-import com.example.dto.AttivitaDto;
-import com.example.entity.Attivita;
+import com.example.controller.dto.AttivitaDto;
+import com.example.service.entity.Attivita;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

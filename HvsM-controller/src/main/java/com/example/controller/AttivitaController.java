@@ -1,11 +1,10 @@
 package com.example.controller;
 
-import com.example.dto.AttivitaDto;
-import com.example.mapper.FiltroAttivitaMapper;
+import com.example.controller.dto.AttivitaDto;
+import com.example.controller.mapper.AttivitaMapper;
 import com.example.service.AttivitaService;
-import com.example.dto.FiltroAttivitaDto;
-import com.example.entity.Attivita;
-import com.example.entitymapper.AttivitaMapper;
+import com.example.controller.dto.FiltroAttivitaDto;
+import com.example.service.entity.Attivita;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -51,7 +50,7 @@ public class AttivitaController {
 
     @GetMapping("/filtraAttivita")
     public List<AttivitaDto> getAttivitaByFilter(@RequestBody FiltroAttivitaDto filtroAttivita) {
-        List<Attivita> list = attivitaService.getAttivitaByFilter(FiltroAttivitaMapper.INSTANCE.map(filtroAttivita));
+        List<Attivita> list = attivitaService.getAttivitaByFilter(filtroAttivita.getNome(), filtroAttivita.getInizio(), filtroAttivita.isDisponibilita());
         return list.stream().map(AttivitaMapper.INSTANCE::mapReverse).collect(Collectors.toList());
     }
 }

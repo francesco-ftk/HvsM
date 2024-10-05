@@ -1,6 +1,6 @@
-package com.example.jpa;
+package com.example.service.jpa;
 
-import com.example.entity.Attivita;
+import com.example.service.entity.Attivita;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

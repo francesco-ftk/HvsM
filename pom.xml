@@ -10,10 +10,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>HvsM-boot</module>
-        <module>HvsM-dto</module>
-        <module>HvsM-model</module>
-        <module>HvsM-mapper</module>
-        <module>HvsM-jpa</module>
         <module>HvsM-service</module>
         <module>HvsM-controller</module>
     </modules>

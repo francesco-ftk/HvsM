@@ -1,8 +1,7 @@
 package com.example.service;
 
-import com.example.entity.Attivita;
-import com.example.jpa.AttivitaJpa;
-import com.example.model.FiltroAttivita;
+import com.example.service.entity.Attivita;
+import com.example.service.jpa.AttivitaJpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,9 +35,9 @@ public class AttivitaService {
         return attivitaJpa.findAll();
     }
 
-    public List<Attivita> getAttivitaByFilter(FiltroAttivita filtroAttivita) {
-        List<Attivita> attivita = attivitaJpa.findByNomeAndGiorno(filtroAttivita.getNome(), filtroAttivita.getInizio());
-        if(filtroAttivita.isDisponibilita()){
+    public List<Attivita> getAttivitaByFilter(String nome, LocalDateTime inizio, boolean disponibilita) {
+        List<Attivita> attivita = attivitaJpa.findByNomeAndGiorno(nome, inizio);
+        if(disponibilita){
             return attivita.stream().filter(a -> (a.getNumeroPostiDisponibili() > a.getNumeroPostiOccupati() && a.getFine().isAfter(LocalDateTime.now()))).collect(Collectors.toList());
         }
         return attivita;

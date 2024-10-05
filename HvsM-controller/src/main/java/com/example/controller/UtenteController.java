@@ -1,12 +1,12 @@
 package com.example.controller;
 
-import com.example.dto.IscrizioneDto;
-import com.example.dto.IscrizioniDto;
-import com.example.dto.LoginDto;
-import com.example.dto.UtenteDto;
-import com.example.entity.Attivita;
-import com.example.entity.Utente;
-import com.example.entitymapper.UtenteMapper;
+import com.example.controller.dto.IscrizioneDto;
+import com.example.controller.dto.IscrizioniDto;
+import com.example.controller.dto.LoginDto;
+import com.example.controller.dto.UtenteDto;
+import com.example.controller.mapper.UtenteMapper;
+import com.example.service.entity.Attivita;
+import com.example.service.entity.Utente;
 import com.example.service.UtenteService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,9 +1,12 @@
-package com.example.model;
+package com.example.controller.dto;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;
 
-public class FiltroAttivita {
+public class FiltroAttivitaDto {
     private String nome;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime inizio;
     private boolean disponibilita;
 
