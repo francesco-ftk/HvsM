@@ -5,7 +5,6 @@ import com.example.entity.Utente;
 import com.example.jpa.AttivitaJpa;
 import com.example.jpa.UtenteJpa;
 import com.example.service.security.BearerService;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional
 public class UtenteService {
 
     @Autowired

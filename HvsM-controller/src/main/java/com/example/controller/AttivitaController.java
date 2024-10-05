@@ -6,6 +6,7 @@ import com.example.service.AttivitaService;
 import com.example.dto.FiltroAttivitaDto;
 import com.example.entity.Attivita;
 import com.example.entitymapper.AttivitaMapper;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
+@Transactional
+@RequestMapping("/api")
 public class AttivitaController {
 
     @Autowired

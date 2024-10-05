@@ -3,7 +3,6 @@ package com.example.service;
 import com.example.entity.Attivita;
 import com.example.jpa.AttivitaJpa;
 import com.example.model.FiltroAttivita;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +12,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@Transactional
 public class AttivitaService {
 
     @Autowired

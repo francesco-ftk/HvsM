@@ -8,6 +8,7 @@ import com.example.entity.Attivita;
 import com.example.entity.Utente;
 import com.example.entitymapper.UtenteMapper;
 import com.example.service.UtenteService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
+@Transactional
+@RequestMapping("/api")
 public class UtenteController {
 
     @Autowired
