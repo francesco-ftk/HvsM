@@ -65,6 +65,6 @@ public class UtenteController {
 
     @PostMapping("/cancellazioneDaAttivita")
     public String cancellazioneDaAttivita(@RequestBody IscrizioneDto payload) {
-        return utenteService.cancellazioneAdAttivita(payload.getBearerToken(), payload.getUsername(), payload.getId(), payload.getIdAttivita());
+        return utenteService.cancellazioneDaAttivita(payload.getBearerToken(), payload.getUsername(), payload.getId(), payload.getIdAttivita());
     }
 }

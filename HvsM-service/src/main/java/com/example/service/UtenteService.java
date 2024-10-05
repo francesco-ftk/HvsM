@@ -39,13 +39,13 @@ public class UtenteService {
     }
 
     public List<Attivita> getIscrizioni(String bearerToken, String username, int id) {
-        if(bearerService.validateToken(bearerToken, username)){
+        if (bearerService.validateToken(bearerToken, username)) {
             Optional<Utente> utente = utenteJpa.findById(id);
-            if(utente.isPresent()){
+            if (utente.isPresent()) {
                 List<Attivita> response = new ArrayList<>();
                 for (Integer idAttivita : utente.get().getIscrizioni()) {
                     Optional<Attivita> attivita = attivitaJpa.findById(idAttivita);
-                    if(attivita.isPresent()){
+                    if (attivita.isPresent()) {
                         response.add(attivita.get());
                     }
                 }
@@ -75,10 +75,53 @@ public class UtenteService {
     }
 
     public String iscrizioneAdAttivita(String bearerToken, String username, int id, int idAttivita) {
-        return  "";
+        if (bearerService.validateToken(bearerToken, username)) {
+            Optional<Attivita> attivita = attivitaJpa.findById(idAttivita);
+            if (attivita.isPresent()) {
+                if (attivita.get().getNumeroPostiDisponibili() > attivita.get().getNumeroPostiOccupati()) {
+                    Optional<Utente> utente = getUtenteById(id);
+                    if (utente.isPresent()) {
+                        if (utente.get().getIscrizioni().contains(idAttivita)) {
+                            return "SEI GIA' ISCRITTO A QUESTA ATTIVITA'";
+                        }
+                        attivita.get().setNumeroPostiOccupati(attivita.get().getNumeroPostiOccupati() + 1);
+                        attivitaJpa.save(attivita.get());
+                        utente.get().getIscrizioni().add(idAttivita);
+                        updateUtente(utente.get());
+                        return "ISCRIZIONE ANDATA A BUON FINE";
+                    } else {
+                        throw new RuntimeException("UTENTE NON TROVATO");
+                    }
+
+                }
+                return "ATTIVITA' CON POSTI ESAURITI";
+            } else {
+                throw new RuntimeException("ATTIVITA' NON TROVATA");
+            }
+        } else {
+            throw new RuntimeException("AUTHENTICATION FAILED");
+        }
     }
 
-    public String cancellazioneAdAttivita(String bearerToken, String username, int id, int idAttivita) {
-        return "";
+    public String cancellazioneDaAttivita(String bearerToken, String username, int id, int idAttivita) {
+        if (bearerService.validateToken(bearerToken, username)) {
+            Optional<Attivita> attivita = attivitaJpa.findById(idAttivita);
+            if (attivita.isPresent()) {
+                Optional<Utente> utente = getUtenteById(id);
+                if (utente.isPresent()) {
+                    attivita.get().setNumeroPostiOccupati(attivita.get().getNumeroPostiOccupati() - 1);
+                    attivitaJpa.save(attivita.get());
+                    utente.get().getIscrizioni().remove(idAttivita);
+                    updateUtente(utente.get());
+                    return "CANCELLAZIONE ANDATA A BUON FINE";
+                } else {
+                    throw new RuntimeException("UTENTE NON TROVATO");
+                }
+            } else {
+                throw new RuntimeException("ATTIVITA' NON TROVATA");
+            }
+        } else {
+            throw new RuntimeException("AUTHENTICATION FAILED");
+        }
     }
 }
